@@ -1,0 +1,197 @@
+/* --- GERAL E RESET --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    padding: 2rem;
+}
+
+/* --- BARRA DE NAVEGAÇÃO --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+    max-width: 1320px; /* Adicionado para alinhar com o grid */
+    margin-left: auto;   /* Adicionado para centralizar */
+    margin-right: auto;  /* Adicionado para centralizar */
+}
+
+.logo { font-weight: bold; font-size: 1.5rem; }
+.navbar nav ul { list-style: none; display: flex; gap: 2rem; }
+.navbar nav a { color: #888; text-decoration: none; transition: color 0.3s ease; font-weight: 500; }
+.navbar nav a:hover { color: #fff; }
+.navbar nav a.active { color: #fff; } /* Estilo do link ativo */
+
+.cta-button {
+    background-color: #252525;
+    color: #e0e0e0;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    border: 1px solid #333;
+    transition: background-color 0.3s ease;
+}
+.cta-button:hover { background-color: #333; }
+
+/* --- LAYOUT GRID PRECISO --- */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* Definindo o layout exato da Home */
+    grid-template-areas:
+        "intro intro credentials projects"
+        "blog services services profiles"
+        "metrics metrics cta cta";
+    gap: 20px;
+    max-width: 1320px; /* MODIFICADO: Define uma largura máxima para o grid */
+    margin: auto;      /* MODIFICADO: Centraliza o grid na página */
+}
+
+/* Associa cada card à sua área definida no grid */
+.card-intro { grid-area: intro; }
+.card-credentials { grid-area: credentials; }
+.card-projects { grid-area: projects; }
+.card-blog { grid-area: blog; }
+.card-services { grid-area: services; }
+.card-profiles { grid-area: profiles; }
+.card-metrics { grid-area: metrics; }
+.card-cta { grid-area: cta; }
+
+/* --- ESTILO GERAL DOS CARDS E ANIMAÇÃO --- */
+.card {
+    background-color: #1e1e1e;
+    border-radius: 20px;
+    padding: 30px;
+    border: 1px solid #282828;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden; /* Garante que elementos filhos não vazem */
+    min-height: 260px; /* MODIFICADO: Aumenta a altura mínima dos cards */
+    
+    opacity: 0;
+    transform: translateY(20px);
+    transition: transform 0.4s ease, opacity 0.6s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.card.visible { opacity: 1; transform: translateY(0); }
+.card:hover {
+    border-color: #444; 
+}
+/* --- ÍCONE DE "+" --- */
+.card-expandable::after {
+    content: '+';
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #555;
+    
+    /* --- CORREÇÃO APLICADA AQUI --- */
+    text-align: center; /* Garante o alinhamento horizontal perfeito */
+    line-height: 28px;  /* Alinha verticalmente de forma precisa (30px de altura - 2px das bordas) */
+    
+    font-size: 24px;
+    color: #888;
+    font-weight: 300;
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.card-expandable:hover::after {
+    background-color: #333;
+    color: #fff;
+    transform: rotate(-90deg);
+}
+
+/* --- ESTILOS ESPECÍFICOS DOS CARDS --- */
+.subtitle { font-size: 0.8rem; color: #888; text-transform: uppercase; margin-bottom: 8px; }
+h2 { font-size: 2.5rem; line-height: 1.1; margin-bottom: 1rem; }
+h4 { font-size: 1.2rem; }
+.text-blue { color: #3b82f6; }
+
+/* Intro Card */
+.card-intro { 
+    flex-direction: row; 
+    align-items: center; 
+    gap: 30px; 
+    padding-left: 40px; 
+}
+.intro-image { flex-shrink: 0; }
+.intro-image img { 
+    width: 200px; 
+    height: 200px; 
+    border-radius: 20px; 
+    object-fit: cover; 
+}
+
+/* Credentials & Projects Cards */
+.featured-banner { background-color: #2a2a2a; color: #666; font-size: 0.7rem; white-space: nowrap; overflow: hidden; position: absolute; top: 0; left: 0; width: 100%; padding: 5px 0; }
+.signature {
+    max-width: 180px; /* Experimente este valor, ou ajuste como preferir */
+    margin: 20px 0;
+    
+}.project-image {
+    width: 100%;
+    max-height: 145px;  /* << AUMENTE este valor aos poucos (de 120 para 145, por exemplo) */
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+/* Services & Profiles Cards */
+.service-icons, .social-icons { display: flex; gap: 15px; font-size: 2rem; margin-bottom: 1rem; color: #888; }
+.social-icons { font-size: 2.5rem; }
+
+/* Blog Card */
+.blog-logo { max-width: 80px; margin-bottom: 1rem; }
+
+/* Metrics Card */
+.card-metrics { flex-direction: row; justify-content: space-around; align-items: center; padding: 20px; }
+.metric-item { text-align: center; }
+.metric-item .number { font-size: 2.5rem; font-weight: 600; display: block; }
+.metric-item p { font-size: 0.7rem; color: #888; line-height: 1.2; }
+
+/* CTA Card */
+.card-cta .ph-star-four { font-size: 2rem; color: #888; margin-bottom: auto; }
+.card-cta h2 { margin-top: auto; }
+
+/* --- RESPONSIVIDADE --- */
+@media (max-width: 1024px) {
+    /* Tablet */
+    .portfolio-grid {
+        grid-template-areas:
+            "intro intro"
+            "credentials projects"
+            "services services"
+            "blog profiles"
+            "metrics metrics"
+            "cta cta";
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    /* Celular */
+    body { padding: 1rem; }
+    .navbar { flex-direction: column; gap: 1rem; }
+    
+    .portfolio-grid {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card-intro { flex-direction: column; text-align: center; padding-left: 30px; }
+    .intro-image img { width: 120px; height: 120px; }
+    h2 { font-size: 2rem; }
+    .card-metrics { flex-direction: column; gap: 2rem; padding: 30px; }
+}
