@@ -10,6 +10,10 @@ body {
     color: #e0e0e0;
     font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
     padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
 }
 
 /* --- BARRA DE NAVEGAÇÃO --- */
@@ -20,6 +24,7 @@ body {
     margin-bottom: 2rem;
     padding: 0 1rem;
     max-width: 1320px;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -28,7 +33,7 @@ body {
 .navbar nav ul { list-style: none; display: flex; gap: 2rem; }
 .navbar nav a { color: #888; text-decoration: none; transition: color 0.3s ease; font-weight: 500; }
 .navbar nav a:hover { color: #fff; }
-.navbar nav a.active { color: #fff; }
+.navbar nav a.active { color: #fff; border-bottom: 2px solid #3b82f6; }
 
 .cta-button {
     background-color: #252525;
@@ -41,30 +46,16 @@ body {
 }
 .cta-button:hover { background-color: #333; }
 
-/* --- LAYOUT GRID PRECISO --- */
-.portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-areas:
-        "intro intro credentials projects"
-        "blog services services profiles"
-        "metrics metrics cta cta";
-    gap: 20px;
+/* --- GRIDS (Contêiner principal) --- */
+.portfolio-grid, .about-grid {
+    width: 100%;
     max-width: 1320px;
-    margin: auto;
+    margin: 0 auto;
+    gap: 20px;
+    display: grid;
 }
 
-/* Associa cada card à sua área definida no grid */
-.card-intro { grid-area: intro; }
-.card-credentials { grid-area: credentials; }
-.card-projects { grid-area: projects; }
-.card-blog { grid-area: blog; }
-.card-services { grid-area: services; }
-.card-profiles { grid-area: profiles; }
-.card-metrics { grid-area: metrics; }
-.card-cta { grid-area: cta; }
-
-/* --- ESTILO GERAL DOS CARDS E ANIMAÇÃO --- */
+/* --- ESTILO GERAL DOS CARDS --- */
 .card {
     background-color: #1e1e1e;
     border-radius: 20px;
@@ -73,27 +64,24 @@ body {
     position: relative;
     display: flex;
     flex-direction: column;
-    /* ESSA LINHA EMPURRA O RODAPÉ PARA BAIXO E O CONTEÚDO PARA CIMA */
     justify-content: space-between;
     overflow: hidden;
-    min-height: 240px;
-    
+    min-height: 210px;
     opacity: 0;
     transform: translateY(20px);
     transition: transform 0.4s ease, opacity 0.6s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 .card.visible { opacity: 1; transform: translateY(0); }
+.card:hover {
+    transform: translateY(-5px);
+    border-color: #444;
+}
 
-/* --- ESTILO PARA CARDS CLICÁVEIS --- */
+/* --- ESTILO PARA LINKS DE CARD --- */
 .card-link {
     text-decoration: none;
     color: inherit;
     display: contents;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    border-color: #444;
 }
 
 /* --- ÍCONE DE "+" --- */
@@ -119,143 +107,361 @@ body {
     transform: rotate(90deg);
 }
 
-/* --- ESTILOS ESPECÍFICOS DOS CARDS --- */
+/* --- ESTILOS DE TEXTO COMUNS --- */
 .subtitle { font-size: 0.8rem; color: #888; text-transform: uppercase; margin-bottom: 8px; }
 h2 { font-size: 2.5rem; line-height: 1.1; margin-bottom: 1rem; }
 h4 { font-size: 1.2rem; }
 .text-blue { color: #3b82f6; }
 
-/* Intro Card */
-.card-intro { 
-    flex-direction: row; 
-    align-items: center; 
-    gap: 30px; 
-    padding-left: 40px; 
-}
-.intro-image img { 
-    width: 150px; 
-    height: 150px; 
-    border-radius: 20px; 
-    object-fit: cover; 
+
+/* --- PÁGINA HOME: GRID E ESTILOS ESPECÍFICOS --- */
+
+.portfolio-grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas:
+        "intro intro credentials projects"
+        "blog services services profiles"
+        "metrics metrics cta cta";
 }
 
-/* Credentials Card */
-.signature {
-    max-width: 180px;
-    margin-right: auto;
-    margin-bottom: 1rem;
-}
+.card-intro { grid-area: intro; flex-direction: row; align-items: center; gap: 30px; padding-left: 40px; }
+.card-credentials { grid-area: credentials; }
+.card-projects { grid-area: projects; }
+.card-blog { grid-area: blog; }
+.card-services { grid-area: services; }
+.card-profiles { grid-area: profiles; }
+.card-metrics { grid-area: metrics; flex-direction: row; justify-content: space-around; align-items: center; padding: 20px; }
+.card-cta { grid-area: cta; }
 
-/* Projects Card */
-.project-image {
-    width: 100%;
-    max-height: 180px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-/* GitHub Card */
-.blog-logo { 
-    max-width: 160px;
-    margin-bottom: 1rem;
-}
-
-/* --- SEÇÃO DE ÍCONES CORRIGIDA --- */
-/* Estilo base comum para os dois containers de ícones */
-.service-icons, .social-icons {
-    display: flex;
-    justify-content: center;
-    color: #888;
-    width: 100%;
-    /* A MÁGICA DA CENTRALIZAÇÃO VERTICAL ACONTECE AQUI */
-    margin-top: auto;
-    margin-bottom: auto;
-}
-/* Estilo específico para os ícones de SERVICES */
-.service-icons {
-    gap: 70px;
-    font-size: 4rem;
-}
-/* Estilo específico para os ícones de PROFILES */
-.social-icons {
-    gap: 50px;
-    font-size: 3.5rem;
-}
-
-
-/* Metrics Card */
-.card-metrics { 
-    flex-direction: row; 
-    justify-content: space-around; 
-    align-items: center; 
-    padding: 20px; 
-}
+/* Elementos específicos da Home */
+.intro-image img { width: 150px; height: 150px; border-radius: 20px; object-fit: cover; }
+.signature { max-width: 180px; margin-right: auto; margin-bottom: 1rem; }
+.project-image { width: 100%; max-height: 180px; object-fit: cover; border-radius: 10px; }
+.blog-logo { max-width: 160px; margin-bottom: 1rem; }
+.service-icons, .social-icons { display: flex; justify-content: center; color: #888; width: 100%; margin: auto 0; }
+.service-icons { gap: 70px; font-size: 4rem; }
+.social-icons { gap: 50px; font-size: 3.5rem; }
 .metric-item { text-align: center; }
 .metric-item .number { font-size: 2.5rem; font-weight: 600; }
 .metric-item p { font-size: 0.7rem; color: #888; line-height: 1.2; }
-
-/* CTA Card */
 .card-cta .ph-star-four { font-size: 2rem; color: #888; }
+
+
+/* --- PÁGINA ABOUT: GRID E ESTILOS ESPECÍFICOS --- */
+.about-grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+        "photo summary summary summary"
+        "experience experience education education"
+        "profiles cta cta credentials";
+}
+
+/* Associação de áreas e estilos da About */
+.about-photo { grid-area: photo; padding: 6px; background: linear-gradient(145deg, #3b82f6, #1e1e1e 60%); border-radius: 26px; }
+.about-photo img { width: 100%; height: 100%; object-fit: cover; border-radius: 20px; }
+
+.about-summary { grid-area: summary; justify-content: center; }
+.about-summary .ph-star-four { font-size: 2rem; color: #888; margin-bottom: 1rem; }
+.about-summary h2 { font-size: 1rem; color: #888; letter-spacing: 2px; margin-bottom: 1.5rem; }
+.about-summary h3 { font-size: 2.5rem; line-height: 1.2; margin-bottom: 1rem; }
+.about-summary p { color: #aaa; line-height: 1.6; }
+
+.about-experience { grid-area: experience; justify-content: flex-start; }
+.about-education { grid-area: education; justify-content: flex-start; }
+
+.about-experience h4, .about-education h4 { color: #888; text-transform: uppercase; font-size: 1rem; letter-spacing: 1px; margin-bottom: 2rem; border-bottom: 1px solid #333; padding-bottom: 0.5rem; }
+.timeline-item { position: relative; padding-left: 20px; margin-bottom: 2rem; }
+.timeline-item:last-child { margin-bottom: 0; }
+.timeline-item::before { content: ''; position: absolute; left: 0; top: 5px; width: 10px; height: 10px; border-radius: 50%; background-color: #3b82f6; border: 2px solid #1e1e1e; }
+.timeline-item .date { color: #888; font-size: 0.9rem; }
+.timeline-item h5 { font-size: 1.1rem; margin: 4px 0; }
+.timeline-item .company { color: #aaa; font-size: 0.9rem; }
+
+/* Reutilização de cards da Home na página About */
+.about-grid .card-profiles { grid-area: profiles; }
+.about-grid .card-cta { grid-area: cta; }
+.about-grid .card-credentials { grid-area: credentials; }
 
 
 /* --- RESPONSIVIDADE --- */
 @media (max-width: 1024px) {
-    /* Tablet */
-    .portfolio-grid {
+    .portfolio-grid, .about-grid {
         grid-template-columns: 1fr 1fr;
-        grid-template-areas:
-            "intro intro"
-            "credentials projects"
-            "services profiles"
-            "blog metrics"
-            "cta cta";
+    }
+    .portfolio-grid {
+        grid-template-areas: "intro intro" "credentials projects" "services profiles" "blog metrics" "cta cta";
+    }
+    .about-grid {
+        grid-template-areas: "photo summary" "experience experience" "education education" "profiles credentials" "cta cta";
     }
 }
 
 @media (max-width: 640px) {
-    /* Celular */
-    body { padding: 1rem; }
+    body { padding: 1rem; justify-content: flex-start; }
     .navbar { flex-direction: column; gap: 1rem; }
     
-    .portfolio-grid {
+    .portfolio-grid, .about-grid {
         grid-template-columns: 1fr;
-        grid-template-areas:
-            "intro"
-            "credentials"
-            "projects"
-            "services"
-            "profiles"
-            "blog"
-            "metrics"
-            "cta";
+    }
+    .portfolio-grid {
+        grid-template-areas: "intro" "credentials" "projects" "services" "profiles" "blog" "metrics" "cta";
+    }
+    .about-grid {
+        grid-template-areas: "photo" "summary" "experience" "education" "profiles" "credentials" "cta";
     }
 
-    .card-intro { 
-        flex-direction: column; 
-        text-align: center; 
-        padding-left: 30px; 
-        padding-right: 30px;
-    }
+    .card-intro { flex-direction: column; text-align: center; padding: 30px; }
     .intro-image img { width: 120px; height: 120px; }
-    h2 { font-size: 2rem; }
+    h2, .about-summary h3 { font-size: 2rem; }
     
-    .card-metrics { 
-        flex-direction: row;
-        gap: 1rem;
-        flex-wrap: wrap;
+    .card-metrics { flex-direction: row; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+    .project-image { max-height: unset; }
+    .service-icons { font-size: 3rem; gap: 40px; }
+    .social-icons { font-size: 2.8rem; gap: 40px; }
+}
+
+/* --- PÁGINA WORKS: ESTILOS ESPECÍFICOS --- */
+
+.works-page {
+    max-width: 1320px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* --- Seção do Projeto em Destaque --- */
+.featured-project {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr; 
+    gap: 40px;
+    align-items: center;
+    margin-bottom: 6rem;
+}
+
+.project-hero-image img {
+    width: 80%;
+    border-radius: 20px;
+    border: 1px solid #282828;
+}
+
+.project-hero-details .subtitle {
+    font-size: 0.9rem;
+}
+
+.project-hero-details h1 {
+    font-size: 3.5rem;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+}
+
+.project-description {
+    color: #aaa;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+}
+
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 2.5rem;
+}
+
+.tech-stack span {
+    background-color: #252525;
+    border: 1px solid #333;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.project-links {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.project-links .btn-primary, .project-links .btn-secondary {
+    padding: 12px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.project-links .btn-primary {
+    background-color: #3b82f6;
+    color: #fff;
+}
+.project-links .btn-primary:hover {
+    background-color: #2563eb;
+}
+
+.project-links .btn-secondary {
+    background-color: transparent;
+    color: #e0e0e0;
+    border: 1px solid #333;
+}
+.project-links .btn-secondary:hover {
+    background-color: #252525;
+}
+
+/* --- Seção de Outros Projetos --- */
+.other-projects h2 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.project-item {
+    background-color: #1e1e1e;
+    border: 1px solid #282828;
+    border-radius: 15px;
+    overflow: hidden;
+    text-decoration: none;
+    color: #e0e0e0;
+    transition: all 0.3s ease;
+}
+.project-item:hover {
+    transform: translateY(-5px);
+    border-color: #444;
+}
+
+.project-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.project-info {
+    padding: 20px;
+}
+
+.project-info h5 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.project-info p {
+    color: #888;
+}
+
+@media(max-width: 1024px) {
+    .featured-project {
+        grid-template-columns: 1fr; 
+        text-align: center;
+    }
+    .project-hero-image {
+        order: -1; 
+        max-width: 100%;
+        margin: 0 auto 2rem auto;
+    }
+    .tech-stack, .project-links {
         justify-content: center;
     }
+}
 
-    .project-image {
-        max-height: unset;
-    }
+@media(max-width: 640px) {
+    .project-hero-details h1 { font-size: 2.5rem; }
+}
 
-    .service-icons {
-        font-size: 3rem;
-        gap: 40px;
+/* --- ESTILOS DO MODAL DE PROJETOS --- */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal-content {
+    background-color: #1e1e1e;
+    border: 1px solid #282828;
+    margin: 5% auto;
+    padding: 40px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 900px;
+    position: relative;
+    animation: slideIn 0.4s ease-out;
+}
+
+.modal-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: center;
+}
+
+.modal-image img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+.close-button {
+    color: #aaa;
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 35px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* --- ESTILOS GERAIS DE ANIMAÇÃO AO ROLAR --- */
+.anim-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.5s ease-out;
+}
+
+.anim-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animações do Modal */
+@keyframes fadeIn {
+    from { background-color: rgba(0, 0, 0, 0); backdrop-filter: blur(0px); }
+    to { background-color: rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Responsividade do Modal */
+@media(max-width: 768px) {
+    .modal-body {
+        grid-template-columns: 1fr;
     }
-    .social-icons {
-        font-size: 2.8rem;
-        gap: 40px;
+    .modal-content {
+        margin: 10% auto;
+        padding: 30px;
     }
 }

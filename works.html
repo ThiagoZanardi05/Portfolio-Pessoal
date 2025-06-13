@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thiago Zanardi - Trabalhos</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">Zanardi</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="works.html" class="active">Works</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="#contact" class="cta-button">Let's talk</a>
+    </header>
+
+    <main class="works-page">
+
+        <section class="featured-project anim-on-scroll">
+            <div class="project-hero-image">
+                <img src="assets/img/ProjectMockup.png" alt="Imagem do Projeto Fortitude Equip">
+            </div>
+            <div class="project-hero-details">
+                <p class="subtitle">WEB APP / E-COMMERCE</p>
+                <h1>Fortitude Equip</h1>
+                <p class="project-description">
+                    Plataforma de e-commerce completa desenvolvida para uma marca de equipamentos de ginástica, com foco em performance e uma experiência de usuário fluida, desde a navegação até o checkout.
+                </p>
+                <div class="tech-stack">
+                    <span>Java</span>
+                    <span>Spring Boot</span>
+                    <span>Angular</span>
+                    <span>PostgreSQL</span>
+                    <span>AWS</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="btn-primary">Ver Projeto Online <i class="ph ph-arrow-up-right"></i></a>
+                    <a href="#" class="btn-secondary">Ver no GitHub <i class="ph ph-github-logo"></i></a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="other-projects">
+            <h2 class="anim-on-scroll">Outros Projetos</h2>
+            <div class="projects-grid">
+                
+                <div class="project-item anim-on-scroll" style="transition-delay: 100ms;"
+                     data-image="https://via.placeholder.com/800x500/1e1e1e/888?text=Projeto+2" 
+                     data-subtitle="WEB APP" 
+                     data-title="Dashboard de Análises" 
+                     data-description="Um dashboard interativo para visualização de dados em tempo real, construído com foco em performance e usabilidade."
+                     data-tech="React,Node.js,D3.js,MongoDB"
+                     data-live-link="https://www.seusite-projeto2.com.br" 
+                     data-github-link="https://github.com/seu-usuario/dashboard-analises">
+                    
+                    <img src="https://via.placeholder.com/600x400/1e1e1e/888?text=Projeto+2" alt="Imagem do Projeto 2">
+                    <div class="project-info">
+                        <h5>Dashboard de Análises</h5>
+                        <p>React, Node.js</p>
+                    </div>
+                </div>
+        
+                <div class="project-item anim-on-scroll" style="transition-delay: 200ms;"
+                     data-image="https://via.placeholder.com/800x500/2a2a2a/888?text=Projeto+3" 
+                     data-subtitle="BACK-END" 
+                     data-title="API de Pagamentos" 
+                     data-description="API RESTful segura para processamento de pagamentos, com integração a múltiplos gateways e documentação completa."
+                     data-tech="Java,Spring Boot,Stripe API,JWT"
+                     data-live-link="#"
+                     data-github-link="#">
+        
+                    <img src="https://via.placeholder.com/600x400/2a2a2a/888?text=Projeto+3" alt="Imagem do Projeto 3">
+                    <div class="project-info">
+                        <h5>API de Pagamentos</h5>
+                        <p>Java, Spring</p>
+                    </div>
+                </div>
+        
+                <div class="project-item anim-on-scroll" style="transition-delay: 300ms;"
+                     data-image="https://via.placeholder.com/800x500/1a1a1a/888?text=Projeto+4" 
+                     data-subtitle="LANDING PAGE" 
+                     data-title="Página de Evento" 
+                     data-description="Landing page responsiva e otimizada para conversão para um evento de tecnologia, com animações e formulário de inscrição."
+                     data-tech="HTML,CSS,JavaScript,GSAP"
+                     data-live-link="#"
+                     data-github-link="#">
+        
+                    <img src="https://via.placeholder.com/600x400/1a1a1a/888?text=Projeto+4" alt="Imagem do Projeto 4">
+                    <div class="project-info">
+                        <h5>Landing Page de Evento</h5>
+                        <p>HTML, CSS, JS</p>
+                    </div>
+                </div>
+        
+            </div>
+        </section>
+
+        <div id="projectModal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <div class="modal-body">
+                    <div class="modal-image">
+                        <img id="modalProjectImage" src="" alt="Imagem do Projeto">
+                    </div>
+                    <div class="modal-details">
+                        <p id="modalProjectSubtitle" class="subtitle"></p>
+                        <h1 id="modalProjectTitle"></h1>
+                        <p id="modalProjectDescription" class="project-description"></p>
+                        <div id="modalProjectTech" class="tech-stack"></div>
+                        <div id="modalProjectLinks" class="project-links"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    
+    <script src="js/main.js"></script>
+    <script src="js/modal.js"></script>
+
+</body>
+</html>
