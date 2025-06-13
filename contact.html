@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thiago Zanardi - Trabalhos</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">Zanardi</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="works.html">Works</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="#contact" class="cta-button">Let's talk</a>
+    </header>
+
+    <main class="contact-page-container">
+        <div class="contact-info-left">
+            <h2>CONTACT INFO</h2>
+        
+            <div class="info-block">
+                <div class="info-icon"><i class="ph ph-envelope-simple"></i></div>
+                <div class="info-text">
+                    <h4>MAIL US</h4>
+                    <p>info@gridly.com</p>
+                    <p>info@gridly2.com</p>
+                </div>
+            </div>
+        
+            <div class="info-block">
+                <div class="info-icon"><i class="ph ph-phone"></i></div>
+                <div class="info-text">
+                    <h4>CONTACT US</h4>
+                    <p>+1 234-567-8912</p>
+                    <p>+1 234-567-8913</p>
+                </div>
+            </div>
+        
+            <div class="info-block">
+                <div class="info-icon"><i class="ph ph-map-pin"></i></div>
+                <div class="info-text">
+                    <h4>LOCATION</h4>
+                    <p>London Eye, London,<br>United Kingdom</p>
+                </div>
+            </div>
+        
+            <div class="social-info">
+                <h4>SOCIAL INFO</h4>
+                <div class="info-social-icons">
+                    <a href="#"><i class="ph ph-dribbble-logo"></i></a>
+                    <a href="#"><i class="ph ph-twitter-logo"></i></a>
+                    <a href="#"><i class="ph ph-instagram-logo"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contact-form-right">
+            <h2>Let's work <span class="text-blue">together.</span></h2>
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="name">Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Your Subject *</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea id="message" name="message" rows="5"></textarea>
+                </div>
+                <button type="submit" class="btn-primary">Send Message</button>
+            </form>
+        </div>
+    </main>
+    
+    <script src="js/main.js"></script>
+    <script src="js/modal.js"></script>
+
+</body>
+</html>
